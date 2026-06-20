@@ -1,4 +1,4 @@
-# Flow Matching Study
+# Flow Matching 日本語学習メモ
 
 このリポジトリは、Flow Matching および関連する生成モデルについて学ぶための個人的なメモと実験コードをまとめたものです。
 
