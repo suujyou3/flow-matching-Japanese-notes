@@ -1,3 +1,9 @@
+"""Reflow pair の生成と、生成軌道の直線性を測る utilities。
+
+既存 model の ODE flow map で x0 を輸送して新しい endpoint pair を作る。
+straightness ratio は軌道長/端点距離で、1 に近いほど直線的である。
+"""
+
 from collections.abc import Callable
 
 import torch

@@ -1,4 +1,8 @@
-"""Minimal PyTorch components for the Flow Matching research material."""
+"""Flow Matching 研究教材で使う最小 PyTorch components の公開 API。
+
+教材の実行 script はこの module から import し、内部ファイル構成への依存を避ける。
+理論要素（path、loss、coupling、solver）を個別に交換できる構成になっている。
+"""
 
 from .data import eight_gaussian_centers, sample_eight_gaussians, sample_standard_normal
 from .diffusion_basics import ddim_sample, epsilon_prediction_loss, q_sample, trig_alpha_sigma

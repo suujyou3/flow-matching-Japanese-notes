@@ -1,3 +1,9 @@
+"""Conditional Flow Matching と Rectified Flow の学習目的関数。
+
+経路が与える teacher velocity u_t と model velocity v_theta(t, x_t) の
+二乗誤差を Monte Carlo 推定する。数式とコードの対応を優先した最小実装である。
+"""
+
 import torch
 from torch import nn
 

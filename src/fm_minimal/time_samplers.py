@@ -1,3 +1,9 @@
+"""CFM objective の Monte Carlo 推定に使う時刻 t の sampling strategy。
+
+一様分布のほか、Beta 分布により中央または端点付近を重点 sampling する。
+sampling 分布を変えると、時刻領域ごとの学習重みが暗黙に変化する。
+"""
+
 from collections.abc import Callable
 
 import torch

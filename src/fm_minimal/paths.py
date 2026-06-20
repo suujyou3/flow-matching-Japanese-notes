@@ -1,3 +1,9 @@
+"""Conditional Flow Matching で使う確率経路と、その条件付き速度。
+
+各 path は endpoint pair (x0, x1) から途中点 x_t と時間微分 u_t=dx_t/dt を返す。
+学習 loss はこの interface のため、直線経路と三角関数型 Gaussian 経路を交換できる。
+"""
+
 from dataclasses import dataclass
 from typing import Protocol
 

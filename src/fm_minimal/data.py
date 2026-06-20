@@ -1,3 +1,9 @@
+"""2次元 Flow Matching 実験で使う source/target 分布の sampling utilities。
+
+source は標準正規分布、target は円周上に並ぶ eight-Gaussians mixture とし、
+多峰性を保った輸送を小さなモデルでも観察できるようにする。
+"""
+
 import math
 
 import torch

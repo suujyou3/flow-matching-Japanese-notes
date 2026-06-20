@@ -1,3 +1,9 @@
+"""source と target の minibatch coupling（対応付け）を構成する。
+
+CFM loss は周辺分布だけでなく pair (x0, x1) の結び方にも依存する。
+独立 coupling と、輸送距離を短くしやすい教育用 greedy coupling を比較する。
+"""
+
 import torch
 
 

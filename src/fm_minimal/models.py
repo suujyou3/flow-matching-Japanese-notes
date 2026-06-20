@@ -1,3 +1,9 @@
+"""2次元実験用の時刻条件付き MLP velocity field。
+
+scalar time t を sinusoidal embedding に写し、state x と連結して速度を予測する。
+RectifiedFlowMLP は章中の用語に合わせた同一 architecture の別名である。
+"""
+
 import math
 
 import torch

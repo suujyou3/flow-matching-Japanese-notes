@@ -1,3 +1,9 @@
+"""画像上の時刻依存速度場を表す小型 U-Net と DiT。
+
+どちらも (t, x_t) を受け取り x_t と同形状の velocity を返す。
+性能競争ではなく、畳み込み型と token 型の条件付け・shape 変換を学ぶための実装である。
+"""
+
 import torch
 from torch import nn
 import torch.nn.functional as F

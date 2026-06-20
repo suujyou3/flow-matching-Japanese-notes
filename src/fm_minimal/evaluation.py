@@ -1,3 +1,9 @@
+"""2次元生成分布の品質を測る軽量な評価指標。
+
+RBF-kernel MMD で分布全体、mode coverage で多峰性、endpoint error で
+各標本から近傍 mode までの距離を測る。いずれも toy experiment 向けである。
+"""
+
 import torch
 
 

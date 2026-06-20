@@ -1,3 +1,9 @@
+"""Flow Matching と対比するための最小 diffusion / DDIM 実装。
+
+ここでは t=0 を clean data、t=1 を noise とする diffusion 側の時刻規約を使う。
+Flow Matching の source→target 規約とは向きが異なる点に注意する。
+"""
+
 import torch
 from torch import nn
 

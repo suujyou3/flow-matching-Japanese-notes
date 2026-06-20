@@ -1,3 +1,9 @@
+"""学習した velocity field の ODE dx/dt=v_theta(t,x) を数値積分する。
+
+Euler・Heun・RK4 と、それぞれの NFE（model evaluation 数）の計算を提供する。
+solver の step 数だけでなく NFE を揃えると、推論計算量を公平に比較できる。
+"""
+
 from collections.abc import Callable
 
 import torch
