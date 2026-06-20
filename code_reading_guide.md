@@ -54,23 +54,23 @@
 
 `LinearPath.sample` は
 
-$$
+```math
 x_t = (1-t)x_0 + tx_1
-$$
+```
 
 に対応する。`LinearPath.velocity` は
 
-$$
+```math
 u_t = x_1 - x_0
-$$
+```
 
 に対応する。
 
 `TrigGaussianPath` では
 
-$$
+```math
 x_t = \alpha(t)x_1 + \sigma(t)x_0
-$$
+```
 
 を使う。pathを変えると、主に `sample` と `velocity` が変わる。lossやtraining loopの外形はあまり変わらない。
 
@@ -80,12 +80,12 @@ $$
 
 `conditional_flow_matching_loss` は
 
-$$
+```math
 \mathbb{E}_{t,x_0,x_1}
 \left[
 \|v_\theta(t,x_t)-u_t\|^2
 \right]
-$$
+```
 
 をミニバッチで近似する。重要なのは、モデルに `x0` と `x1` を渡さないことである。生成時に使える速度場は、$t$ と $x_t$ だけから速度を返す必要がある。
 
@@ -118,9 +118,9 @@ x_t ---------------------------+
 
 `euler_solve` は
 
-$$
+```math
 x_{t+\Delta t} = x_t + \Delta t\,v_\theta(t,x_t)
-$$
+```
 
 を繰り返す。`heun_solve` は1 stepで2回、`rk4_solve` は1 stepで4回モデルを呼ぶ。したがって、solver比較ではstep数だけでなくNFEも見る。
 
@@ -205,14 +205,14 @@ CSV列名は `mmd` だが、実装が計算するのはRBF kernelを使ったbia
 
 ## 5. 実験を実行する
 
-以下のコマンドは、`flow_matching` フォルダを含む作業フォルダのルートから実行する。Pythonの起動コマンドは環境によって `python`、`python3`、`py` のいずれかになるため、本書では `python` と表記する。例はPowerShell形式である。Bashやzshでは、パス区切りの `\` を `/` に、行末のバッククォートを `\` に置き換えるか、コマンドを1行で入力する。初回は短い設定で処理全体が動くことを確認し、その後で学習stepやサンプル数を増やす。
+以下のコマンドは、カレントディレクトリの直下に `src`、`_outputs`、`figures` がある状態で実行する。リポジトリを取得した場合は、`code_reading_guide.md` と `src` が見えるディレクトリへ移動してから実行する。Pythonの起動コマンドは環境によって `python`、`python3`、`py` のいずれかになるため、本書では `python` と表記する。例はPowerShell形式である。Bashやzshでは、パス区切りの `\` を `/` に、行末のバッククォートを `\` に置き換えるか、コマンドを1行で入力する。初回は短い設定で処理全体が動くことを確認し、その後で学習stepやサンプル数を増やす。
 
 ### 5.1 最小CFMを学習する
 
 まず、一様なtime samplerを使うbaselineを学習する。
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 `
   --batch 512 `
   --lr 0.001 `
@@ -225,7 +225,7 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
   --depth 3 `
   --time-dim 32 `
   --activation silu `
-  --out .\flow_matching\research_material\_outputs\baseline
+  --out .\_outputs\baseline
 ```
 
 | 引数 | 既定値 | 意味 |
@@ -247,9 +247,9 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
 動作確認だけなら、次のように小さくする。
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 20 --batch 32 `
-  --out .\flow_matching\research_material\_outputs\smoke_test
+  --out .\_outputs\smoke_test
 ```
 
 20 stepでは生成品質を判断しない。これはimport、shape、backward、checkpoint保存までが動くかを確認するsmoke testである。
@@ -259,9 +259,9 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
 学習済みcheckpointから、source、target、生成点、粒子軌道を描く。
 
 ```powershell
-python .\flow_matching\research_material\src\plot_minimal_2d.py `
-  --checkpoint .\flow_matching\research_material\_outputs\baseline\minimal_2d.pt `
-  --out .\flow_matching\research_material\figures\baseline_result.png `
+python .\src\plot_minimal_2d.py `
+  --checkpoint .\_outputs\baseline\minimal_2d.pt `
+  --out .\figures\baseline_result.png `
   --device cpu `
   --samples 2048 `
   --trajectory-samples 64 `
@@ -284,16 +284,16 @@ python .\flow_matching\research_material\src\plot_minimal_2d.py `
 同じsource noiseとtarget標本を使い、solverとstep数を変えて比較する。
 
 ```powershell
-python .\flow_matching\research_material\src\evaluate_minimal_2d.py `
-  --checkpoint .\flow_matching\research_material\_outputs\baseline\minimal_2d.pt `
+python .\src\evaluate_minimal_2d.py `
+  --checkpoint .\_outputs\baseline\minimal_2d.pt `
   --device cpu `
   --samples 2048 `
   --target-samples 2048 `
   --solvers euler heun rk4 `
   --steps 8 16 32 64 `
   --seed 0 `
-  --csv-out .\flow_matching\research_material\_outputs\baseline\evaluation.csv `
-  --plot-out .\flow_matching\research_material\figures\baseline_solver_comparison.png
+  --csv-out .\_outputs\baseline\evaluation.csv `
+  --plot-out .\figures\baseline_solver_comparison.png
 ```
 
 | 引数 | 既定値 | 意味 |
@@ -316,13 +316,13 @@ python .\flow_matching\research_material\src\evaluate_minimal_2d.py `
 同じNFE予算でsolverを比較する場合は、`steps_from_nfe_budget`を使う次の指定に切り替える。
 
 ```powershell
-python .\flow_matching\research_material\src\evaluate_minimal_2d.py `
-  --checkpoint .\flow_matching\research_material\_outputs\baseline\minimal_2d.pt `
+python .\src\evaluate_minimal_2d.py `
+  --checkpoint .\_outputs\baseline\minimal_2d.pt `
   --solvers euler heun rk4 `
   --nfe-budgets 16 32 64 `
   --seed 0 `
-  --csv-out .\flow_matching\research_material\_outputs\baseline\equal_nfe.csv `
-  --plot-out .\flow_matching\research_material\figures\baseline_equal_nfe.png
+  --csv-out .\_outputs\baseline\equal_nfe.csv `
+  --plot-out .\figures\baseline_equal_nfe.png
 ```
 
 たとえばNFE予算16なら、Eulerは16 step、Heunは8 step、RK4は4 stepになる。割り切れない予算では、予算を超えない最大の整数step数を使う。
@@ -332,17 +332,17 @@ python .\flow_matching\research_material\src\evaluate_minimal_2d.py `
 time samplerの効果を見るときは、出力ディレクトリを分け、その他の引数を固定する。
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --lr 0.001 --time-sampler uniform `
-  --out .\flow_matching\research_material\_outputs\time_uniform
+  --out .\_outputs\time_uniform
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --lr 0.001 --time-sampler center `
-  --out .\flow_matching\research_material\_outputs\time_center
+  --out .\_outputs\time_center
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --lr 0.001 --time-sampler endpoint `
-  --out .\flow_matching\research_material\_outputs\time_endpoint
+  --out .\_outputs\time_endpoint
 ```
 
 三つのcheckpointを5.2節と5.3節のコマンドで個別に可視化・評価する。比較時には同じ `--seed`、`--samples`、solver、NFEを使う。training lossの大小だけではなく、MMD、mode coverage、軌道図を合わせて見る。
@@ -352,15 +352,15 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
 第11.3節のpath差し替え実験を行う。time sampler、coupling、model、seedを固定し、`--path` と出力先だけを変える。
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --path linear --coupling independent --time-sampler uniform `
-  --out .\flow_matching\research_material\_outputs\path_linear
+  --out .\_outputs\path_linear
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --path trig --coupling independent --time-sampler uniform `
-  --out .\flow_matching\research_material\_outputs\path_trig
+  --out .\_outputs\path_trig
 ```
 
 `linear` は $x_t=(1-t)x_0+tx_1$、`trig` はdata係数をsin、noise係数をcosで変えるGaussian風pathである。両者は途中状態と教師速度が異なるため、training lossの値を直接比べるだけでなく、5.2節と5.3節の生成評価を行う。
@@ -368,15 +368,15 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
 ### 5.6 couplingだけを変えて比較する
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --path linear --coupling independent `
-  --out .\flow_matching\research_material\_outputs\coupling_independent
+  --out .\_outputs\coupling_independent
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --path linear --coupling greedy `
-  --out .\flow_matching\research_material\_outputs\coupling_greedy
+  --out .\_outputs\coupling_greedy
 ```
 
 `independent` は `random_coupling` でtarget側をランダムに並べ替え、sourceとtargetの対応に距離情報を使わない。`greedy` はmini-batch内で距離の近い点を重複なしに対応させる。これはcouplingを差し替える位置を理解する教材用近似であり、厳密なOptimal Transport solverではない。比較では同じbatch sizeを使う。batchが変わるとgreedy couplingが探索できる候補数も変わるためである。
@@ -386,31 +386,31 @@ python .\flow_matching\research_material\src\train_minimal_2d.py `
 `models.py` のMLP設計は、CLIから幅、深さ、時刻埋め込み、活性化関数を変更できる。まずモデル容量だけを変える。
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --hidden-dim 64 --depth 2 --time-dim 32 `
   --activation silu `
-  --out .\flow_matching\research_material\_outputs\model_small
+  --out .\_outputs\model_small
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --hidden-dim 128 --depth 3 --time-dim 32 `
   --activation silu `
-  --out .\flow_matching\research_material\_outputs\model_baseline
+  --out .\_outputs\model_baseline
 ```
 
 活性化関数だけを変更する例:
 
 ```powershell
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --hidden-dim 128 --depth 3 --time-dim 32 --activation relu `
-  --out .\flow_matching\research_material\_outputs\model_relu
+  --out .\_outputs\model_relu
 
-python .\flow_matching\research_material\src\train_minimal_2d.py `
+python .\src\train_minimal_2d.py `
   --steps 2000 --batch 512 --seed 0 `
   --hidden-dim 128 --depth 3 --time-dim 32 --activation tanh `
-  --out .\flow_matching\research_material\_outputs\model_tanh
+  --out .\_outputs\model_tanh
 ```
 
 | 変更箇所 | 主な影響 | 固定するもの |
@@ -427,7 +427,7 @@ checkpointには `model_config` が保存されるため、5.2節・5.3節は変
 ### 5.8 Rectified Flowを学習する
 
 ```powershell
-python .\flow_matching\research_material\src\train_rectified_flow_2d.py `
+python .\src\train_rectified_flow_2d.py `
   --steps 2000 `
   --batch 512 `
   --lr 0.001 `
@@ -438,7 +438,7 @@ python .\flow_matching\research_material\src\train_rectified_flow_2d.py `
   --depth 3 `
   --time-dim 32 `
   --activation silu `
-  --out .\flow_matching\research_material\_outputs\rectified_flow
+  --out .\_outputs\rectified_flow
 ```
 
 各引数の意味は5.1節と同じである。出力される `rectified_flow_2d.pt` には、モデル重み、モデル構成、生成サンプル、平均straightness ratio、time sampler名が保存される。
@@ -448,8 +448,8 @@ python .\flow_matching\research_material\src\train_rectified_flow_2d.py `
 5.8節で学習したcheckpointをbase modelとして使う。
 
 ```powershell
-python .\flow_matching\research_material\src\train_reflow_2d.py `
-  --base-checkpoint .\flow_matching\research_material\_outputs\rectified_flow\rectified_flow_2d.pt `
+python .\src\train_reflow_2d.py `
+  --base-checkpoint .\_outputs\rectified_flow\rectified_flow_2d.pt `
   --steps 2000 `
   --batch 512 `
   --lr 0.001 `
@@ -457,7 +457,7 @@ python .\flow_matching\research_material\src\train_reflow_2d.py `
   --seed 0 `
   --pair-steps 64 `
   --time-sampler uniform `
-  --out .\flow_matching\research_material\_outputs\reflow
+  --out .\_outputs\reflow
 ```
 
 | 引数 | 既定値 | 意味 |
@@ -479,7 +479,7 @@ python .\flow_matching\research_material\src\train_reflow_2d.py `
 ### 5.10 比較用Diffusionを学習する
 
 ```powershell
-python .\flow_matching\research_material\src\train_diffusion_toy.py `
+python .\src\train_diffusion_toy.py `
   --steps 2000 `
   --batch 512 `
   --lr 0.001 `
@@ -489,7 +489,7 @@ python .\flow_matching\research_material\src\train_diffusion_toy.py `
   --depth 3 `
   --time-dim 32 `
   --activation silu `
-  --out .\flow_matching\research_material\_outputs\diffusion
+  --out .\_outputs\diffusion
 ```
 
 | 引数 | 既定値 | 意味 |
@@ -510,9 +510,9 @@ python .\flow_matching\research_material\src\train_diffusion_toy.py `
 ### 5.11 Diffusion生成点群と軌道を可視化する
 
 ```powershell
-python .\flow_matching\research_material\src\sample_diffusion_toy.py `
-  --checkpoint .\flow_matching\research_material\_outputs\diffusion\diffusion_toy.pt `
-  --out .\flow_matching\research_material\figures\diffusion_toy_result.png `
+python .\src\sample_diffusion_toy.py `
+  --checkpoint .\_outputs\diffusion\diffusion_toy.pt `
+  --out .\figures\diffusion_toy_result.png `
   --device cpu `
   --samples 2048 `
   --trajectory-samples 64 `
@@ -533,8 +533,8 @@ python .\flow_matching\research_material\src\sample_diffusion_toy.py `
 ### 5.12 Diffusion生成をNFE別に評価する
 
 ```powershell
-python .\flow_matching\research_material\src\evaluate_diffusion_toy.py `
-  --checkpoint .\flow_matching\research_material\_outputs\diffusion\diffusion_toy.pt `
+python .\src\evaluate_diffusion_toy.py `
+  --checkpoint .\_outputs\diffusion\diffusion_toy.pt `
   --device cpu `
   --samples 2048 `
   --target-samples 2048 `
@@ -542,8 +542,8 @@ python .\flow_matching\research_material\src\evaluate_diffusion_toy.py `
   --bandwidth 0.5 `
   --coverage-radius 0.35 `
   --seed 0 `
-  --csv-out .\flow_matching\research_material\_outputs\diffusion\evaluation.csv `
-  --plot-out .\flow_matching\research_material\figures\diffusion_toy_evaluation.png
+  --csv-out .\_outputs\diffusion\evaluation.csv `
+  --plot-out .\figures\diffusion_toy_evaluation.png
 ```
 
 | 引数 | 既定値 | 意味 |
@@ -568,7 +568,7 @@ CSVには各NFEのbiased MMD²、coverage、endpoint errorに加え、`mode_coun
 実画像datasetを接続する前に、U-NetとDiTが画像と同じshapeの速度を返し、backwardできることを確認する。
 
 ```powershell
-python .\flow_matching\research_material\src\check_image_model_shapes.py `
+python .\src\check_image_model_shapes.py `
   --batch 4 `
   --channels 3 `
   --image-size 32 `
