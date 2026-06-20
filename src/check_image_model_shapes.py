@@ -1,3 +1,9 @@
+"""画像用速度場モデルの入出力形状と勾配伝播を確認するスモークテスト。
+
+Flow Matching の速度場は入力画像と同じ形のベクトルを返す必要がある。
+ここでは Tiny U-Net / DiT の forward と backward が最小構成で成立するかを調べる。
+"""
+
 import argparse
 
 import torch

@@ -1,3 +1,9 @@
+"""直線条件付き経路を用いる 1-Rectified Flow を2次元データで学習する。
+
+独立に抽出した source/target pair の変位 x1-x0 を教師速度として回帰し、
+学習後は確率流 ODE の軌道長と端点間距離から straightness も評価する。
+"""
+
 import argparse
 from pathlib import Path
 

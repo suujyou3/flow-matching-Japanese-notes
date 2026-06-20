@@ -1,3 +1,9 @@
+"""学習済み2次元 Flow Matching model を複数の ODE solver で評価する。
+
+生成品質だけでなく NFE（速度場の評価回数）も記録し、Euler・Heun・RK4 を
+同一計算予算で比較できるようにする。結果は後段の表や図で使える形式に保存する。
+"""
+
 import argparse
 import csv
 import json

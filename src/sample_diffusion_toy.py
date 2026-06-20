@@ -1,3 +1,9 @@
+"""学習済み diffusion baseline から DDIM sampling を行い、分布を描画する。
+
+同じ eight-Gaussians toy problem を使うことで、Flow Matching の ODE sampling と
+diffusion の反復的 denoising を視覚的に比較できる。
+"""
+
 import argparse
 from pathlib import Path
 

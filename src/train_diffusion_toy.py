@@ -1,3 +1,9 @@
+"""Flow Matching と比較するための連続時刻 diffusion baseline を学習する。
+
+clean data を時刻 t に応じて加ノイズし、model に混入した noise epsilon を
+予測させる。データ分布と MLP 規模は Flow Matching 実験に揃えている。
+"""
+
 import argparse
 from pathlib import Path
 

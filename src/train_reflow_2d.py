@@ -1,3 +1,9 @@
+"""既存の Flow model が作った pair を使って Reflow model を再学習する。
+
+第1段 model で source sample を target 側へ輸送し、その対応を新しい教師 pair
+として用いる。これにより生成軌道をより直線にし、少ない ODE step を狙う。
+"""
+
 import argparse
 from pathlib import Path
 

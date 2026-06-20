@@ -1,3 +1,9 @@
+"""2次元 toy data 上で diffusion baseline を定量・定性評価する。
+
+学習済み epsilon-prediction model から DDIM で標本を生成し、MMD、mode coverage、
+endpoint error を計算する。Flow Matching と同じ評価指標を使うための比較対象である。
+"""
+
 import argparse
 import csv
 import json

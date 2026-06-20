@@ -1,3 +1,9 @@
+"""2次元 Flow Matching の source・target・生成分布を並べて可視化する。
+
+すべての散布図で軸範囲と aspect ratio を固定し、見かけの拡大縮小による
+比較のずれを避ける。学習済み checkpoint から確率流 ODE を積分して生成する。
+"""
+
 import argparse
 from pathlib import Path
 

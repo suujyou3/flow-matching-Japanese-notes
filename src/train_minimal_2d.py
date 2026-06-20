@@ -1,3 +1,10 @@
+"""2次元 toy problem で Conditional Flow Matching の最小実験を学習する。
+
+source noise x0 と target data x1 を結び、条件付き経路上の点 x_t において
+model velocity v_theta(t, x_t) を teacher velocity u_t へ回帰する。
+path・coupling・time sampler を切り替え、各設計選択の影響を観察できる。
+"""
+
 import argparse
 from pathlib import Path
 
