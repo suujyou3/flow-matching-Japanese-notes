@@ -1,4 +1,4 @@
-# Flow Matching研究者向け教材
+# Flow Matching教材
 
 作成日: 2026-06-14
 最終更新: 2026-06-20
