@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">2D toy linear path concept</title>
+  <desc id="desc">A conceptual diagram showing source Gaussian samples, target eight Gaussian modes, and linear paths between paired samples.</desc>
+  <rect width="960" height="360" fill="#ffffff"/>
+  <style>
+    .panel { fill: #fbfbfc; stroke: #d7dbe3; stroke-width: 1.5; rx: 8; }
+    .axis { stroke: #c5cad3; stroke-width: 1; }
+    .source { fill: #3d6fb6; fill-opacity: 0.68; }
+    .target { fill: #d45b48; fill-opacity: 0.78; }
+    .path { stroke: #56606f; stroke-opacity: 0.45; stroke-width: 1.4; }
+    .mid { fill: #46a36f; fill-opacity: 0.76; }
+    .label { fill: #1f2530; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; }
+    .small { fill: #4c5565; font-family: Arial, sans-serif; font-size: 13px; }
+    .formula { fill: #1f2530; font-family: Arial, sans-serif; font-size: 16px; }
+  </style>
+
+  <rect class="panel" x="28" y="48" width="270" height="252"/>
+  <rect class="panel" x="345" y="48" width="270" height="252"/>
+  <rect class="panel" x="662" y="48" width="270" height="252"/>
+
+  <text class="label" x="58" y="34">Source p0</text>
+  <text class="label" x="375" y="34">Target p1</text>
+  <text class="label" x="692" y="34">Paired Linear Paths</text>
+
+  <line class="axis" x1="62" y1="174" x2="264" y2="174"/>
+  <line class="axis" x1="163" y1="76" x2="163" y2="274"/>
+  <line class="axis" x1="379" y1="174" x2="581" y2="174"/>
+  <line class="axis" x1="480" y1="76" x2="480" y2="274"/>
+  <line class="axis" x1="696" y1="174" x2="898" y2="174"/>
+  <line class="axis" x1="797" y1="76" x2="797" y2="274"/>
+
+  <circle class="source" cx="152" cy="162" r="4"/>
+  <circle class="source" cx="173" cy="171" r="4"/>
+  <circle class="source" cx="160" cy="185" r="4"/>
+  <circle class="source" cx="144" cy="180" r="4"/>
+  <circle class="source" cx="182" cy="152" r="4"/>
+  <circle class="source" cx="169" cy="143" r="4"/>
+  <circle class="source" cx="135" cy="151" r="4"/>
+  <circle class="source" cx="190" cy="185" r="4"/>
+  <circle class="source" cx="151" cy="199" r="4"/>
+  <circle class="source" cx="198" cy="164" r="4"/>
+  <circle class="source" cx="128" cy="170" r="4"/>
+  <circle class="source" cx="176" cy="205" r="4"/>
+  <circle class="source" cx="113" cy="157" r="4"/>
+  <circle class="source" cx="211" cy="192" r="4"/>
+  <circle class="source" cx="154" cy="132" r="4"/>
+  <circle class="source" cx="198" cy="132" r="4"/>
+  <circle class="source" cx="121" cy="199" r="4"/>
+  <circle class="source" cx="222" cy="153" r="4"/>
+  <circle class="source" cx="139" cy="123" r="4"/>
+  <circle class="source" cx="103" cy="185" r="4"/>
+  <text class="small" x="64" y="286">Gaussian noise samples x0</text>
+
+  <g>
+    <circle class="target" cx="560" cy="174" r="7"/>
+    <circle class="target" cx="537" cy="117" r="7"/>
+    <circle class="target" cx="480" cy="94" r="7"/>
+    <circle class="target" cx="423" cy="117" r="7"/>
+    <circle class="target" cx="400" cy="174" r="7"/>
+    <circle class="target" cx="423" cy="231" r="7"/>
+    <circle class="target" cx="480" cy="254" r="7"/>
+    <circle class="target" cx="537" cy="231" r="7"/>
+  </g>
+  <circle class="target" cx="554" cy="180" r="3"/>
+  <circle class="target" cx="568" cy="168" r="3"/>
+  <circle class="target" cx="531" cy="123" r="3"/>
+  <circle class="target" cx="542" cy="110" r="3"/>
+  <circle class="target" cx="474" cy="101" r="3"/>
+  <circle class="target" cx="488" cy="88" r="3"/>
+  <circle class="target" cx="416" cy="123" r="3"/>
+  <circle class="target" cx="429" cy="111" r="3"/>
+  <circle class="target" cx="392" cy="169" r="3"/>
+  <circle class="target" cx="407" cy="181" r="3"/>
+  <circle class="target" cx="418" cy="239" r="3"/>
+  <circle class="target" cx="430" cy="225" r="3"/>
+  <circle class="target" cx="474" cy="248" r="3"/>
+  <circle class="target" cx="487" cy="260" r="3"/>
+  <circle class="target" cx="530" cy="225" r="3"/>
+  <circle class="target" cx="544" cy="239" r="3"/>
+  <text class="small" x="382" y="286">Eight Gaussian mixture modes x1</text>
+
+  <line class="path" x1="758" y1="162" x2="875" y2="174"/>
+  <line class="path" x1="779" y1="171" x2="852" y2="117"/>
+  <line class="path" x1="766" y1="185" x2="795" y2="94"/>
+  <line class="path" x1="750" y1="180" x2="738" y2="117"/>
+  <line class="path" x1="788" y1="152" x2="715" y2="174"/>
+  <line class="path" x1="775" y1="143" x2="738" y2="231"/>
+  <line class="path" x1="741" y1="151" x2="795" y2="254"/>
+  <line class="path" x1="804" y1="185" x2="852" y2="231"/>
+
+  <circle class="source" cx="758" cy="162" r="4"/>
+  <circle class="source" cx="779" cy="171" r="4"/>
+  <circle class="source" cx="766" cy="185" r="4"/>
+  <circle class="source" cx="750" cy="180" r="4"/>
+  <circle class="source" cx="788" cy="152" r="4"/>
+  <circle class="source" cx="775" cy="143" r="4"/>
+  <circle class="source" cx="741" cy="151" r="4"/>
+  <circle class="source" cx="804" cy="185" r="4"/>
+
+  <circle class="target" cx="875" cy="174" r="6"/>
+  <circle class="target" cx="852" cy="117" r="6"/>
+  <circle class="target" cx="795" cy="94" r="6"/>
+  <circle class="target" cx="738" cy="117" r="6"/>
+  <circle class="target" cx="715" cy="174" r="6"/>
+  <circle class="target" cx="738" cy="231" r="6"/>
+  <circle class="target" cx="795" cy="254" r="6"/>
+  <circle class="target" cx="852" cy="231" r="6"/>
+
+  <circle class="mid" cx="817" cy="168" r="4"/>
+  <circle class="mid" cx="815" cy="144" r="4"/>
+  <circle class="mid" cx="781" cy="140" r="4"/>
+  <circle class="mid" cx="744" cy="149" r="4"/>
+  <text class="formula" x="704" y="286">x_t = (1-t)x0 + t x1</text>
+  <text class="small" x="704" y="309">Blue: source, red: target, green: intermediate x_t</text>
+</svg>

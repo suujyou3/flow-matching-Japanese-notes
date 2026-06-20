@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <rect width="900" height="360" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#222222">CFMでは条件付き速度の平均を学ぶ</text>
+  <rect x="64" y="70" width="772" height="230" rx="10" fill="#fbfbfb" stroke="#dddddd" stroke-width="2"/>
+  <circle cx="450" cy="185" r="12" fill="#222222"/>
+  <text x="468" y="190" font-family="Arial, sans-serif" font-size="16" fill="#222222">同じ入力 (t, x)</text>
+  <g stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M450 185 L330 112" stroke="#4c78a8"/>
+    <path d="M450 185 L345 250" stroke="#54a24b"/>
+    <path d="M450 185 L565 106" stroke="#f58518"/>
+    <path d="M450 185 L585 252" stroke="#b279a2"/>
+  </g>
+  <g fill="#4c78a8"><polygon points="330,112 344,114 337,126"/></g>
+  <g fill="#54a24b"><polygon points="345,250 354,238 360,252"/></g>
+  <g fill="#f58518"><polygon points="565,106 552,109 559,120"/></g>
+  <g fill="#b279a2"><polygon points="585,252 571,249 579,238"/></g>
+  <path d="M450 185 L450 122" stroke="#d62728" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <polygon points="450,122 441,138 459,138" fill="#d62728"/>
+  <text x="465" y="132" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#d62728">平均速度 v*(t,x)</text>
+  <text x="180" y="105" font-family="Arial, sans-serif" font-size="15" fill="#4c78a8">条件 z_A の速度</text>
+  <text x="178" y="265" font-family="Arial, sans-serif" font-size="15" fill="#54a24b">条件 z_B の速度</text>
+  <text x="628" y="104" font-family="Arial, sans-serif" font-size="15" fill="#f58518">条件 z_C の速度</text>
+  <text x="630" y="265" font-family="Arial, sans-serif" font-size="15" fill="#b279a2">条件 z_D の速度</text>
+  <text x="450" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#444444">モデルに条件 z を渡さない場合、MSEの最適解は同じ (t,x) に現れる教師速度の条件付き平均になる。</text>
+</svg>

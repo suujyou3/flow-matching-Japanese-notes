@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <rect width="900" height="360" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#222222">点の軌道と分布の変形を分けて見る</text>
+  <rect x="48" y="72" width="360" height="220" rx="10" fill="#f7fbff" stroke="#b9d7f0" stroke-width="2"/>
+  <text x="228" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#28527a">粒子ひとつ: ODEで動く</text>
+  <path d="M120 228 C160 170, 220 150, 302 116" fill="none" stroke="#356d9a" stroke-width="4"/>
+  <polygon points="302,116 288,116 297,128" fill="#356d9a"/>
+  <circle cx="120" cy="228" r="11" fill="#4c78a8"/>
+  <circle cx="302" cy="116" r="11" fill="#54a24b"/>
+  <text x="108" y="258" font-family="Arial, sans-serif" font-size="16" fill="#333333">x_0</text>
+  <text x="314" y="110" font-family="Arial, sans-serif" font-size="16" fill="#333333">x_1</text>
+  <text x="228" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#333333">dx_t/dt = v_theta(t, x_t)</text>
+  <rect x="492" y="72" width="360" height="220" rx="10" fill="#fffaf4" stroke="#f3cf9a" stroke-width="2"/>
+  <text x="672" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#7a4b12">粒子全体: 分布 p_t が変形する</text>
+  <g fill="#f58518" opacity="0.55">
+    <circle cx="565" cy="224" r="9"/><circle cx="585" cy="210" r="8"/><circle cx="604" cy="228" r="7"/>
+    <circle cx="626" cy="202" r="8"/><circle cx="646" cy="218" r="9"/><circle cx="662" cy="236" r="6"/>
+    <circle cx="676" cy="198" r="7"/><circle cx="700" cy="214" r="8"/>
+  </g>
+  <g stroke="#7a5195" stroke-width="3" fill="none" opacity="0.85">
+    <path d="M560 185 C610 160, 650 150, 725 140"/>
+    <path d="M585 245 C635 230, 675 210, 744 190"/>
+    <path d="M642 175 C685 160, 720 160, 780 156"/>
+  </g>
+  <g fill="#7a5195">
+    <polygon points="725,140 711,137 719,151"/>
+    <polygon points="744,190 731,187 739,201"/>
+    <polygon points="780,156 767,151 773,166"/>
+  </g>
+  <text x="672" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#333333">p_t は大量の x_t の集まりとして動く</text>
+  <text x="450" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#444444">Flow Matchingでは、ニューラル速度場が各粒子を動かし、その集まりとして分布がsourceからtargetへ運ばれる。</text>
+</svg>
