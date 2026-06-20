@@ -7,11 +7,11 @@
   <polygon points="302,116 288,116 297,128" fill="#356d9a"/>
   <circle cx="120" cy="228" r="11" fill="#4c78a8"/>
   <circle cx="302" cy="116" r="11" fill="#54a24b"/>
-  <text x="108" y="258" font-family="Arial, sans-serif" font-size="16" fill="#333333">x_0</text>
-  <text x="314" y="110" font-family="Arial, sans-serif" font-size="16" fill="#333333">x_1</text>
-  <text x="228" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#333333">dx_t/dt = v_theta(t, x_t)</text>
+  <text x="108" y="258" font-family="Cambria Math, Times New Roman, serif" font-size="18" font-style="italic" fill="#333333">x₀</text>
+  <text x="314" y="110" font-family="Cambria Math, Times New Roman, serif" font-size="18" font-style="italic" fill="#333333">x₁</text>
+  <text x="228" y="314" text-anchor="middle" font-family="Cambria Math, Times New Roman, serif" font-size="18" font-style="italic" fill="#333333">d xₜ / d t = v(t, xₜ; θ)</text>
   <rect x="492" y="72" width="360" height="220" rx="10" fill="#fffaf4" stroke="#f3cf9a" stroke-width="2"/>
-  <text x="672" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#7a4b12">粒子全体: 分布 p_t が変形する</text>
+  <text x="672" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#7a4b12">粒子全体: 分布 pₜ が変形する</text>
   <g fill="#f58518" opacity="0.55">
     <circle cx="565" cy="224" r="9"/><circle cx="585" cy="210" r="8"/><circle cx="604" cy="228" r="7"/>
     <circle cx="626" cy="202" r="8"/><circle cx="646" cy="218" r="9"/><circle cx="662" cy="236" r="6"/>
@@ -27,6 +27,6 @@
     <polygon points="744,190 731,187 739,201"/>
     <polygon points="780,156 767,151 773,166"/>
   </g>
-  <text x="672" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#333333">p_t は大量の x_t の集まりとして動く</text>
+  <text x="672" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#333333">pₜ は大量の xₜ の集まりとして動く</text>
   <text x="450" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#444444">Flow Matchingでは、ニューラル速度場が各粒子を動かし、その集まりとして分布がsourceからtargetへ運ばれる。</text>
 </svg>
