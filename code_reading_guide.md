@@ -26,27 +26,29 @@
 
 | ファイル | 主な役割 | 本文で対応する内容 |
 |---|---|---|
-| `src/fm_minimal/data.py` | toy source/target分布を作る | 第1部、第10部 |
-| `src/fm_minimal/paths.py` | Linear pathとGaussian pathを定義する | 第1部、第5部 |
-| `src/fm_minimal/time_samplers.py` | 学習時刻を一様・中央重視・両端重視で標本化する | 第1部、第7部 |
+| `src/fm_minimal/data.py` | toy source/target分布を作る | 第1部、第2部、第10部 |
+| `src/fm_minimal/paths.py` | Linear pathとGaussian pathを定義する | 第1部、第4部 |
+| `src/fm_minimal/time_samplers.py` | 学習時刻を一様・中央重視・両端重視で標本化する | 第1部、第2部、第6部 |
 | `src/fm_minimal/losses.py` | CFM lossを計算する | 第1部、第2部 |
-| `src/fm_minimal/models.py` | 2D toy用の時刻条件付きMLPを定義する | 第3部、第4部 |
-| `src/fm_minimal/solvers.py` | Euler/Heun/RK4でODEを解く | 第1部、第8部 |
-| `src/fm_minimal/couplings.py` | independent/mini-batch couplingを作る | 第6部 |
-| `src/fm_minimal/diffusion_basics.py` | Diffusionのnoising、epsilon loss、DDIM型生成を最小実装する | 第4部、第5部 |
-| `src/fm_minimal/reflow.py` | Reflow用ペアと軌道直線性を扱う | 第7部 |
-| `src/fm_minimal/evaluation.py` | biased MMD²、mode coverage、endpoint errorを計算する | 第10部 |
-| `src/fm_minimal/image_models.py` | 画像用U-Net、patch操作、最小DiT速度場を示す | 第9部 |
+| `src/fm_minimal/models.py` | 2D toy用の時刻条件付きMLPを定義する | 第2部、第7部 |
+| `src/fm_minimal/solvers.py` | Euler/Heun/RK4でODEを解く | 第1部、第9部 |
+| `src/fm_minimal/couplings.py` | independent/mini-batch couplingを作る | 第5部、第6部 |
+| `src/fm_minimal/diffusion_basics.py` | Diffusionのnoising、epsilon loss、DDIM型生成を最小実装する | 第3部、第4部 |
+| `src/fm_minimal/reflow.py` | Reflow用ペアと軌道直線性を扱う | 第6部 |
+| `src/fm_minimal/evaluation.py` | biased MMD²、mode coverage、endpoint errorを計算する | 第8部、第9部 |
+| `src/fm_minimal/likelihood.py` | 2D速度場の発散とNLLを数値積分で計算する | 第8部37.4節、第9部42.6節 |
+| `src/fm_minimal/image_models.py` | 画像用U-Net、patch操作、最小DiT速度場を示す | 第7部 |
 | `src/fm_minimal/__init__.py` | 各部品を `from fm_minimal import ...` で読み込めるよう公開する | 全実行スクリプト |
-| `src/train_minimal_2d.py` | toy CFMを学習する実行スクリプト | 第3部 |
-| `src/train_diffusion_toy.py` | toy Diffusion epsilon predictionを学習する実行スクリプト | 第4部 |
-| `src/sample_diffusion_toy.py` | 学習済みDiffusionから点群と逆向き軌道を生成する | 第4部 |
-| `src/evaluate_diffusion_toy.py` | Diffusion生成をNFE別に数値評価する | 第4部、第10部 |
-| `src/check_image_model_shapes.py` | 画像U-Net/DiTの入出力shapeとgradientを確認する | 第9部 |
-| `src/train_rectified_flow_2d.py` | toy Rectified Flowを学習し、straightness ratioを保存する実行スクリプト | 第7部 |
-| `src/train_reflow_2d.py` | 学習済みflowでペアを作り直し、次のRectified Flowを学習する | 第7部 |
-| `src/plot_minimal_2d.py` | source/target/generated/trajectoryを描く | 第1部、第3部 |
-| `src/evaluate_minimal_2d.py` | checkpointをsolver/NFE別に評価し、CSVと比較図を保存する | 第10部 |
+| `src/train_minimal_2d.py` | toy CFMを学習する実行スクリプト | 第1部、第2部 |
+| `src/train_diffusion_toy.py` | toy Diffusion epsilon predictionを学習する実行スクリプト | 第3部 |
+| `src/sample_diffusion_toy.py` | 学習済みDiffusionから点群と逆向き軌道を生成する | 第3部 |
+| `src/evaluate_diffusion_toy.py` | Diffusion生成をNFE別に数値評価する | 第3部、第8部 |
+| `src/check_image_model_shapes.py` | 画像U-Net/DiTの入出力shapeとgradientを確認する | 第7部 |
+| `src/train_rectified_flow_2d.py` | toy Rectified Flowを学習し、straightness ratioを保存する実行スクリプト | 第6部 |
+| `src/train_reflow_2d.py` | 学習済みflowでペアを作り直し、次のRectified Flowを学習する | 第6部 |
+| `src/plot_minimal_2d.py` | source/target/generated/trajectoryを描く | 第1部、第2部 |
+| `src/evaluate_minimal_2d.py` | checkpointをsolver/NFE別に評価し、CSVと比較図を保存する | 第8部、第9部 |
+| `src/evaluate_solver_study_2d.py` | 同一NFE・同一step数・NFE sweep・NLL感度を評価する | 第9部・第42章 |
 
 ## 3. 数式とコードの対応
 
@@ -203,6 +205,19 @@ CSV列名は `mmd` だが、実装が計算するのはRBF kernelを使ったbia
 
 結果は `_outputs/minimal_2d_evaluation.csv` に保存され、3指標のNFE別比較図は `figures/minimal_2d_solver_comparison.png` に保存される。
 
+### `evaluate_solver_study_2d.py`
+
+第9部・第42章の比較実験をまとめて実行する。`evaluate_minimal_2d.py`が個々のsolver・step条件を評価する入口なのに対し、このスクリプトは比較protocolを組み、同一NFEと同一step数を別々の行として保存する。
+
+```text
+solver_quality_compute.csv: NFE sweep、同一step数、品質、実時間
+solver_quality_compute.png: MMD²、coverage、endpoint error、実時間
+solver_nll_sensitivity.csv: solverごとのNLLと高精度基準との差
+solver_nll_sensitivity.png: NLL推定値と絶対誤差
+```
+
+NLL計算では `fm_minimal/likelihood.py` が2D速度場の発散を厳密に計算し、状態と対数密度補正を同じsolverで逆向きに積分する。画像次元へそのまま拡張すると計算量が大きいため、この厳密計算は教材の2D実験用である。
+
 ## 5. 実験を実行する
 
 以下のコマンドは、カレントディレクトリの直下に `src`、`_outputs`、`figures` がある状態で実行する。リポジトリを取得した場合は、`code_reading_guide.md` と `src` が見えるディレクトリへ移動してから実行する。Pythonの起動コマンドは環境によって `python`、`python3`、`py` のいずれかになるため、本書では `python` と表記する。例はPowerShell形式である。Bashやzshでは、パス区切りの `\` を `/` に、行末のバッククォートを `\` に置き換えるか、コマンドを1行で入力する。初回は短い設定で処理全体が動くことを確認し、その後で学習stepやサンプル数を増やす。
@@ -349,7 +364,7 @@ python .\src\train_minimal_2d.py `
 
 ### 5.5 pathだけを変えて比較する
 
-第11.3節のpath差し替え実験を行う。time sampler、coupling、model、seedを固定し、`--path` と出力先だけを変える。
+本文2.1〜3.3節と7.3節で説明したpath差し替え実験を行う。time sampler、coupling、model、seedを固定し、`--path` と出力先だけを変える。
 
 ```powershell
 python .\src\train_minimal_2d.py `
@@ -588,6 +603,23 @@ python .\src\check_image_model_shapes.py `
 
 成功すると、各モデルについてinput/output shape、仮loss、パラメータ数、`gradients=ok` が表示される。これは画像生成品質を測る実験ではなく、長時間学習の前にshape不一致、patch設定、gradient断絶を検出するsmoke testである。
 
+### 5.14 solver比較studyを一括実行する
+
+本文42.2〜42.5節の同一NFE比較、NFE sweep、同一step数比較、品質–計算量曲線を一度に実行する。
+
+```powershell
+python .\src\evaluate_solver_study_2d.py `
+  --checkpoint .\_outputs\minimal_2d.pt `
+  --solvers euler heun rk4 `
+  --nfe-budgets 1 2 4 8 16 32 64 128 `
+  --same-steps 8 16 32 64 `
+  --skip-nll `
+  --out-dir .\_outputs\solver_study `
+  --seed 0
+```
+
+NLLのsolver感度も測る場合は `--skip-nll` を外し、本文42.6節の `--nll-samples`、`--nll-nfe-budgets`、基準solver設定を追加する。sample品質だけを調べる実験では、NLL計算を省略してよい。
+
 ## 6. 研究用に改造するときの入口
 
 | やりたい変更 | 触る場所 |
@@ -601,7 +633,9 @@ python .\src\check_image_model_shapes.py `
 | Diffusion学習と比較する | `diffusion_basics.py`, `train_diffusion_toy.py` |
 | Diffusionで生成・評価する | `diffusion_basics.py`, `sample_diffusion_toy.py`, `evaluate_diffusion_toy.py` |
 | Rectified Flowを学習する | `models.py`, `losses.py`, `train_rectified_flow_2d.py` |
-| solver比較をする | `solvers.py`, `evaluate_minimal_2d.py` |
+| solverを個別条件で比較する | `solvers.py`, `evaluate_minimal_2d.py` |
+| 同一NFE・NFE sweep・同一step数を一括比較する | `evaluate_solver_study_2d.py` |
+| 2DでNLLのsolver感度を測る | `likelihood.py`, `evaluate_solver_study_2d.py` |
 | Reflowを試す | `reflow.py` |
 | Reflowを一連の実験として実行する | `train_rectified_flow_2d.py`, `train_reflow_2d.py` |
 | 評価指標を追加する | `evaluation.py` |
