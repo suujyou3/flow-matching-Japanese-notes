@@ -10,6 +10,7 @@ from .evaluation import endpoint_error, gaussian_kernel_mmd, nearest_mode_covera
 from .image_models import TinyDiTVelocity, TinyUNetVelocity, patchify, unpatchify
 from .couplings import greedy_minibatch_coupling, pairwise_squared_cost, random_coupling
 from .losses import conditional_flow_matching_loss, rectified_flow_loss
+from .likelihood import estimate_nll, nll_nfe, solve_augmented_density_ode, standard_normal_log_prob
 from .models import MLPVelocity, RectifiedFlowMLP
 from .paths import ConditionalPath, LinearPath, TrigGaussianPath
 from .reflow import make_reflow_pairs, straightness_ratio, trajectory_path_length
@@ -37,6 +38,7 @@ __all__ = [
     "ddim_sample",
     "rectified_flow_loss",
     "epsilon_prediction_loss",
+    "estimate_nll",
     "endpoint_error",
     "eight_gaussian_centers",
     "euler_solve",
@@ -46,6 +48,7 @@ __all__ = [
     "heun_solve",
     "make_reflow_pairs",
     "nfe_per_step",
+    "nll_nfe",
     "nearest_mode_coverage",
     "pairwise_squared_cost",
     "pairwise_squared_distances",
@@ -59,6 +62,8 @@ __all__ = [
     "sample_standard_normal",
     "sample_uniform_time",
     "solver_nfe",
+    "solve_augmented_density_ode",
+    "standard_normal_log_prob",
     "steps_from_nfe_budget",
     "straightness_ratio",
     "trajectory_path_length",
